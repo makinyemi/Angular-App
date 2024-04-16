@@ -1,3 +1,3 @@
 # AngularApp
 
-Demonstrating my experiencing in using angular cli and node to a full stack application.
+Learning to use Angular and Node.js to a build a full stack application.
