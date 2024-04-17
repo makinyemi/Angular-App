@@ -18,8 +18,7 @@ export class HomeComponent {
   products: Product[] = [];
 
   totalRecords = 0;
-
-  rows = 5;
+  rows: number = 5;
 
   onPageChange(event: any) {
     this.fetchProducts(event.page, event.rows);
