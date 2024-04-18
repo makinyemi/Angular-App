@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Product, Products } from '../../types';
 import { ProductComponent } from '../components/product/product.component';
@@ -22,6 +22,8 @@ import { ButtonModule } from 'primeng/button';
 })
 export class HomeComponent {
   constructor(private productsService: ProductsService) {}
+
+  @ViewChild('paginator') paginator: any;
 
   products: Product[] = [];
 
@@ -69,7 +71,12 @@ export class HomeComponent {
   }
 
   onPageChange(event: any) {
+    console.log(event);
     this.fetchProducts(event.page, event.rows);
+  }
+
+  resetPage() {
+    this.paginator.changePage(0);
   }
 
   fetchProducts(page: number, perPage: number) {
@@ -91,6 +98,7 @@ export class HomeComponent {
         next: (data) => {
           console.log(data);
           this.fetchProducts(0, this.rows);
+          this.paginator.resetPage();
         },
         error: (error) => console.error(error),
       });
@@ -103,6 +111,7 @@ export class HomeComponent {
         next: (data) => {
           console.log(data);
           this.fetchProducts(0, this.rows);
+          this.paginator.resetPage();
         },
         error: (error) => console.error(error),
       });
@@ -115,6 +124,7 @@ export class HomeComponent {
         next: (data) => {
           console.log(data);
           this.fetchProducts(0, this.rows);
+          this.paginator.resetPage();
         },
         error: (error) => console.error(error),
       });

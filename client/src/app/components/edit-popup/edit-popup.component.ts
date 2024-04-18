@@ -35,7 +35,6 @@ export class EditPopupComponent {
   @Output() confirm = new EventEmitter<Product>();
 
   onConfirm() {
-    console.log(this.product);
     this.confirm.emit(this.product);
     this.display = false;
     this.displayChange.emit(this.display);
