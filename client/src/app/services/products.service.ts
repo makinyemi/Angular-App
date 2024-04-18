@@ -20,7 +20,7 @@ export class ProductsService {
     return this.apiService.post(url, body, {});
   };
 
-  updateProduct = (url: string, body: any): Observable<any> => {
+  editProduct = (url: string, body: any): Observable<any> => {
     return this.apiService.put(url, body, {});
   };
 

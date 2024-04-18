@@ -31,6 +31,14 @@ export class HomeComponent {
   displayEditPopup: boolean = false;
   displayAddPopup: boolean = false;
 
+  selectedProduct: Product = {
+    id: 0,
+    name: '',
+    image: '',
+    price: '',
+    rating: 0,
+  };
+
   toggleEditPopup(product: Product) {
     this.selectedProduct = product;
     this.displayEditPopup = true;
@@ -40,15 +48,12 @@ export class HomeComponent {
     this.displayAddPopup = true;
   }
 
-  toggleDeletePopup(product: Product) {}
-
-  selectedProduct: Product = {
-    id: 0,
-    name: '',
-    image: '',
-    price: '',
-    rating: 0,
-  };
+  toggleDeletePopup(product: Product) {
+    if (!product.id) {
+      return;
+    }
+    this.deleteProduct(product.id);
+  }
 
   onConfirmEdit(product: Product) {
     if (!this.selectedProduct.id) {
@@ -62,10 +67,6 @@ export class HomeComponent {
     this.addProduct(product);
     this.displayAddPopup = false;
   }
-
-  // onConfirmDelete(id: number) {
-  //   this.deleteProduct(id);
-  // }
 
   onPageChange(event: any) {
     this.fetchProducts(event.page, event.rows);
@@ -85,7 +86,7 @@ export class HomeComponent {
 
   editProduct(product: Product, id: number) {
     this.productsService
-      .updateProduct(`http://localhost:3000/clothes${id}`, product)
+      .editProduct(`http://localhost:3000/clothes/${id}`, product)
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -97,7 +98,7 @@ export class HomeComponent {
 
   deleteProduct(id: number) {
     this.productsService
-      .deleteProduct(`http://localhost:3000/clothes${id}`)
+      .deleteProduct(`http://localhost:3000/clothes/${id}`)
       .subscribe({
         next: (data) => {
           console.log(data);

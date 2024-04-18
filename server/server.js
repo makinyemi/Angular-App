@@ -10,7 +10,7 @@ const port = 3000;
 const corsOptions = {
   origin: "http://localhost:4200",
   optionSuccessStatus: 204,
-  methods: "GET, POST",
+  methods: "GET, POST, PUT, DELETE",
 };
 
 app.use(cors(corsOptions));
