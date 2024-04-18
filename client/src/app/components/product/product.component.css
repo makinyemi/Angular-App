@@ -3,6 +3,7 @@
 
   img {
     aspect-ratio: 1;
+    object-fit: contain;
     width: 100%;
     border-radius: 15px;
     background-color: grey;
